@@ -1,9 +1,7 @@
 /* Zenna — SPA orchestrator: router, i18n, cart, signup. */
 
 (function(){
-  // ── benign warning silencers + dev-asset auth patch ──────────────
-  // ResizeObserver loop warning is a Chromium false-positive when CSS
-  // animations + layout settle in the same frame. Wrap callbacks in rAF.
+  // ResizeObserver loop warning is a Chromium false-positive on CSS animation/layout settle.
   (function(){
     var O = window.ResizeObserver;
     if(!O) return;
@@ -69,6 +67,12 @@
     var hash = location.hash || '#/';
     state.route = hash;
 
+    // loader bar: start
+    var loader = document.getElementById('page-loader');
+    loader.className = '';
+    void loader.offsetWidth;
+    loader.classList.add('loading');
+
     var mount = document.getElementById('page');
     mount.classList.remove('page');
     void mount.offsetWidth; // restart anim
@@ -80,18 +84,9 @@
     } else if(hash === '#/products'){
       html = window.PAGES.products();
       setNavActive('products');
-    } else if(hash === '#about' || hash === '#/about'){
-      // about scrolls into origin on home
-      mount.innerHTML = window.PAGES.home();
-      applyI18n(mount);
-      mount.classList.add('page');
+    } else if(hash === '#/about'){
+      html = window.PAGES.about();
       setNavActive('about');
-      setTimeout(function(){
-        var t = document.getElementById('about');
-        if(t) t.scrollIntoView({behavior:'instant', block:'start'});
-      }, 0);
-      bindPage();
-      return;
     } else if(hash === '#/login'){
       if(authUser){ location.hash = '#/profile'; return; }
       html = window.PAGES.login();
@@ -115,6 +110,10 @@
     }
 
     bindPage();
+
+    // loader bar: finish
+    loader.classList.remove('loading');
+    loader.classList.add('done');
   }
 
   function setNavActive(key){
@@ -169,6 +168,14 @@
       });
     }
 
+    // subscription toggle
+    document.querySelectorAll('.popt input').forEach(function(radio){
+      radio.addEventListener('change', function(){
+        var priceEl = document.getElementById('pd-price');
+        if(priceEl) priceEl.textContent = radio.value === 'sub' ? '21,24 €' : '24,99 €';
+      });
+    });
+
     // ingredients accordion
     document.querySelectorAll('[data-acc]').forEach(function(it){
       it.querySelector('.row').addEventListener('click', function(){
@@ -200,9 +207,14 @@
       });
     }
 
-    // empty-cart "browse" link
-    var em = document.querySelector('.cart-drawer .empty .btn');
-    if(em) em.addEventListener('click', function(){ closeCart(); location.hash = '#/products'; });
+    // hero carousel
+    if(document.querySelector('.hero-carousel-track')) initCarousel();
+
+    // prep step carousel
+    if(document.querySelector('.prep-carousel')) initPrepCarousel();
+
+    // scroll reveal
+    initReveal();
 
     // ── login / signup form ──────────────────────────────────────────
     var authForm = document.getElementById('auth-form');
@@ -289,11 +301,121 @@
     }
   }
 
+  function initCarousel(){
+    var track = document.querySelector('.hero-carousel-track');
+    if(!track) return;
+    var wrap = track.parentElement;
+    var pos = 0;
+    var hovered = false;
+    var lastTime = null;
+    wrap.addEventListener('mouseenter', function(){ hovered = true; });
+    wrap.addEventListener('mouseleave', function(){ hovered = false; });
+    function step(now){
+      if(!document.body.contains(track)) return;
+      if(lastTime !== null){
+        var speed = hovered ? 0.01 : 0.02; // px per ms
+        pos += speed * (now - lastTime);
+        var half = track.scrollWidth / 2;
+        if(pos >= half) pos -= half;
+        track.style.transform = 'translateX(-' + pos.toFixed(1) + 'px)';
+      }
+      lastTime = now;
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function initPrepCarousel(){
+    var track = document.querySelector('.prep-track');
+    if(!track) return;
+    var dots  = document.querySelectorAll('.prep-dot');
+    var steps = track.querySelectorAll('.step');
+    var total = steps.length;
+    var cur   = 0;
+
+    function goTo(idx){
+      cur = (idx + total) % total;
+      track.style.transform = 'translateX(calc(-' + cur + ' * (100% + 48px)))';
+      dots.forEach(function(d){ d.classList.toggle('on', +d.dataset.idx === cur); });
+    }
+
+    document.querySelector('.prep-prev').addEventListener('click', function(){ goTo(cur - 1); });
+    document.querySelector('.prep-next').addEventListener('click', function(){ goTo(cur + 1); });
+    dots.forEach(function(d){ d.addEventListener('click', function(){ goTo(+d.dataset.idx); }); });
+
+    // touch/swipe
+    var startX = null;
+    track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend', function(e){
+      if(startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if(Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
+      startX = null;
+    });
+  }
+
   function flashAdded(){
     var el = document.getElementById('pd-added');
     if(!el) return;
     el.classList.add('show');
     setTimeout(()=>el.classList.remove('show'), 2200);
+  }
+
+  // custom smooth scroll — easeOutQuart feels much silkier than CSS smooth
+  function smoothScrollTo(y, duration){
+    var start = window.scrollY;
+    var diff  = y - start;
+    var startTime = null;
+    function ease(t){ return 1 - Math.pow(1 - t, 4); }
+    function step(now){
+      if(!startTime) startTime = now;
+      var t = Math.min((now - startTime) / duration, 1);
+      window.scrollTo(0, start + diff * ease(t));
+      if(t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // scroll reveal — fires once per element using IntersectionObserver
+  function initReveal(){
+    var sel = [
+      '.pcard',
+      '.triplet .item',
+      '.insta .card',
+      '.linkfooter .col',
+      '.about-value',
+      '.origin h2',
+      '.origin .bottom',
+      '.signup .wrap > *',
+      '.pdetail .about',
+      '.pdetail .ingredients .item',
+      '.prep-carousel',
+      '.about-text',
+      '.about-values'
+    ].join(',');
+
+    var els = Array.from(document.querySelectorAll(sel));
+    if(!els.length) return;
+
+    // stagger siblings within the same parent
+    var seen = new Set();
+    els.forEach(function(el){ seen.add(el.parentElement); });
+    seen.forEach(function(parent){
+      var kids = Array.from(parent.children).filter(function(c){ return els.includes(c); });
+      kids.forEach(function(c, i){ c.style.transitionDelay = (i * 0.1) + 's'; });
+    });
+
+    els.forEach(function(el){ el.classList.add('reveal'); });
+
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+    els.forEach(function(el){ obs.observe(el); });
   }
 
 
@@ -483,6 +605,36 @@
     document.getElementById('cart-toggle').addEventListener('click', openCart);
     document.getElementById('scrim').addEventListener('click', closeCart);
     document.querySelector('.cart-drawer .close').addEventListener('click', closeCart);
+
+    // custom smooth scroll for in-page anchor links
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('a[href^="#"]');
+      if(!a) return;
+      var href = a.getAttribute('href');
+      if(href.length < 2 || href[1] === '/') return; // skip router links
+      var target = document.getElementById(href.slice(1));
+      if(!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.scrollY - 64;
+      smoothScrollTo(top, 750);
+    });
+
+    // hide nav on scroll down, reveal on scroll up + scroll-to-top button
+    (function(){
+      var lastY = 0;
+      var nav = document.querySelector('.nav');
+      var scrollBtn = document.getElementById('scroll-top');
+      window.addEventListener('scroll', function(){
+        var y = window.scrollY;
+        if(y > lastY && y > 80) nav.classList.add('nav-hidden');
+        else nav.classList.remove('nav-hidden');
+        scrollBtn.classList.toggle('visible', y > 400);
+        lastY = y;
+      }, {passive: true});
+      scrollBtn.addEventListener('click', function(){
+        smoothScrollTo(0, 600);
+      });
+    })();
 
     // router
     window.addEventListener('hashchange', navigate);

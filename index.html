@@ -37,7 +37,7 @@
         <a
           class="navpill"
           data-navkey="about"
-          href="#about"
+          href="#/about"
           data-i18n="nav.about"
         ></a>
       </div>
@@ -83,7 +83,13 @@
     </nav>
 
     <!-- ───── PAGE MOUNT — content rendered by router in app.js ───── -->
+    <div id="page-loader" aria-hidden="true"></div>
     <main id="page" class="page"></main>
+
+    <!-- ───── SCROLL TO TOP ───── -->
+    <button id="scroll-top" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
 
     <!-- ───── FOOTER BAR ───── -->
     <footer class="footbar">
