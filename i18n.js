@@ -99,6 +99,23 @@ window.I18N = {
     'foot.copy': '© 2026 Zenna',
     'foot.terms': 'Terms & conditions',
 
+    /* auth */
+    'auth.signin': 'Sign in',
+    'auth.signup': 'Create account',
+    'auth.email': 'Email address',
+    'auth.password': 'Password',
+    'auth.confirm': 'Confirm password',
+    'auth.signin.btn': 'Sign in',
+    'auth.signup.btn': 'Create account',
+    'auth.check.email': 'Check your inbox to confirm your account.',
+
+    /* profile */
+    'profile.since': 'Zenna member',
+    'profile.logout': 'Log out',
+    'profile.orders.h': 'Your orders',
+    'profile.orders.loading': 'Loading orders…',
+    'profile.orders.empty': 'No orders yet — start shopping!',
+
     /* product list page */
     'plist.crumbs.home': 'Home',
     'plist.crumbs.products': 'Products',
@@ -259,6 +276,23 @@ window.I18N = {
     'lf.4.d': 'hei@zenna.fi',
     'foot.copy': '© 2026 Zenna',
     'foot.terms': 'Ehdot ja säännöt',
+
+    /* auth */
+    'auth.signin': 'Kirjaudu sisään',
+    'auth.signup': 'Luo tili',
+    'auth.email': 'Sähköpostiosoite',
+    'auth.password': 'Salasana',
+    'auth.confirm': 'Vahvista salasana',
+    'auth.signin.btn': 'Kirjaudu sisään',
+    'auth.signup.btn': 'Luo tili',
+    'auth.check.email': 'Tarkista sähköpostisi vahvistaaksesi tilisi.',
+
+    /* profile */
+    'profile.since': 'Zenna-jäsen',
+    'profile.logout': 'Kirjaudu ulos',
+    'profile.orders.h': 'Tilauksesi',
+    'profile.orders.loading': 'Ladataan tilauksia…',
+    'profile.orders.empty': 'Ei vielä tilauksia — aloita ostokset!',
 
     'plist.crumbs.home': 'Etusivu',
     'plist.crumbs.products': 'Tuotteet',

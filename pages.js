@@ -442,5 +442,59 @@ ${linkFooter()}
 </section>`;
   }
 
-  return { home, products, productDetail };
+  // ───── LOGIN / SIGNUP ─────
+  function login(){
+    return `
+<section class="auth-page">
+  <div class="auth-card">
+    <a href="#/" class="auth-logo">
+      <img src="assets/zenna-wordmark.png" alt="Zenna">
+    </a>
+    <div class="auth-tabs">
+      <button class="auth-tab on" data-tab="signin" data-i18n="auth.signin"></button>
+      <button class="auth-tab" data-tab="signup" data-i18n="auth.signup"></button>
+    </div>
+    <form id="auth-form" novalidate>
+      <label class="field auth-field">
+        <input type="email" name="email" autocomplete="email" data-i18n-placeholder="auth.email">
+      </label>
+      <label class="field auth-field">
+        <input type="password" name="password" autocomplete="current-password" data-i18n-placeholder="auth.password">
+      </label>
+      <label class="field auth-field" id="confirm-field" style="display:none">
+        <input type="password" name="confirm" autocomplete="new-password" data-i18n-placeholder="auth.confirm">
+      </label>
+      <div class="auth-error" id="auth-error"></div>
+      <button class="btn solid auth-submit" type="submit" id="auth-submit" data-i18n="auth.signin.btn"></button>
+    </form>
+  </div>
+</section>`;
+  }
+
+  // ───── PROFILE ─────
+  function profile(user){
+    var initial = (user.email || 'Z')[0].toUpperCase();
+    return `
+<section class="profile-page">
+  <div class="profile-wrap">
+    <div class="profile-head">
+      <div class="profile-avatar">${initial}</div>
+      <div class="profile-info">
+        <div class="profile-email">${user.email}</div>
+        <span class="eyebrow" data-i18n="profile.since"></span>
+      </div>
+      <button class="btn" id="logout-btn" data-i18n="profile.logout"></button>
+    </div>
+    <hr class="hair">
+    <div class="profile-orders">
+      <h2 class="profile-orders-h" data-i18n="profile.orders.h"></h2>
+      <div id="orders-list">
+        <p class="orders-loading" data-i18n="profile.orders.loading"></p>
+      </div>
+    </div>
+  </div>
+</section>`;
+  }
+
+  return { home, products, productDetail, login, profile };
 })();

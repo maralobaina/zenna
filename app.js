@@ -31,6 +31,8 @@
     qty:   1
   };
 
+  var authUser = null;
+
   function tt(key){
     var dict = window.I18N[state.lang] || window.I18N.en;
     return (dict && dict[key] != null) ? dict[key] : key;
@@ -90,6 +92,14 @@
       }, 0);
       bindPage();
       return;
+    } else if(hash === '#/login'){
+      if(authUser){ location.hash = '#/profile'; return; }
+      html = window.PAGES.login();
+      setNavActive('');
+    } else if(hash === '#/profile'){
+      if(!authUser){ location.hash = '#/login'; return; }
+      html = window.PAGES.profile(authUser);
+      setNavActive('');
     } else {
       html = window.PAGES.home();
       setNavActive('home');
@@ -193,6 +203,90 @@
     // empty-cart "browse" link
     var em = document.querySelector('.cart-drawer .empty .btn');
     if(em) em.addEventListener('click', function(){ closeCart(); location.hash = '#/products'; });
+
+    // ── login / signup form ──────────────────────────────────────────
+    var authForm = document.getElementById('auth-form');
+    if(authForm){
+      var mode = 'signin';
+      document.querySelectorAll('.auth-tab').forEach(function(tab){
+        tab.addEventListener('click', function(){
+          mode = tab.dataset.tab;
+          document.querySelectorAll('.auth-tab').forEach(function(t){
+            t.classList.toggle('on', t.dataset.tab === mode);
+          });
+          var cf = document.getElementById('confirm-field');
+          var sb = document.getElementById('auth-submit');
+          var pw = document.querySelector('[name=confirm]');
+          if(mode === 'signup'){
+            cf.style.display = ''; pw.required = true;
+            sb.setAttribute('data-i18n','auth.signup.btn');
+          } else {
+            cf.style.display = 'none'; pw.required = false;
+            sb.setAttribute('data-i18n','auth.signin.btn');
+          }
+          applyI18n(document.getElementById('page'));
+        });
+      });
+
+      authForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        var email    = authForm.querySelector('[name=email]').value.trim();
+        var password = authForm.querySelector('[name=password]').value;
+        var errEl    = document.getElementById('auth-error');
+        var btn      = document.getElementById('auth-submit');
+        btn.disabled = true; errEl.textContent = '';
+
+        var promise = mode === 'signin'
+          ? window.SB.auth.signInWithPassword({email: email, password: password})
+          : window.SB.auth.signUp({email: email, password: password});
+
+        promise.then(function(result){
+          btn.disabled = false;
+          if(result.error){
+            errEl.textContent = result.error.message;
+          } else if(mode === 'signup' && !result.data.session){
+            errEl.style.color = 'var(--ink)';
+            errEl.textContent = tt('auth.check.email');
+          } else {
+            location.hash = '#/profile';
+          }
+        });
+      });
+    }
+
+    // ── profile page ─────────────────────────────────────────────────
+    var ordersList = document.getElementById('orders-list');
+    if(ordersList){
+      var logoutBtn = document.getElementById('logout-btn');
+      if(logoutBtn) logoutBtn.addEventListener('click', function(){
+        window.SB.auth.signOut().then(function(){ location.hash = '#/'; });
+      });
+
+      window.SB.from('orders')
+        .select('*')
+        .order('created_at', {ascending: false})
+        .then(function(result){
+          if(result.error || !result.data || result.data.length === 0){
+            ordersList.innerHTML = '<p class="orders-empty" data-i18n="profile.orders.empty"></p>';
+            applyI18n(ordersList);
+            return;
+          }
+          ordersList.innerHTML = result.data.map(function(order){
+            var date  = new Date(order.created_at).toLocaleDateString();
+            var items = Array.isArray(order.items)
+              ? order.items.map(function(it){ return tt('product.name') + ' × ' + it.qty; }).join(', ')
+              : '';
+            return '<div class="order-card">'+
+              '<div class="order-meta">'+
+                '<span class="order-date">'+date+'</span>'+
+                '<span class="order-status">'+order.status+'</span>'+
+              '</div>'+
+              '<div class="order-items">'+items+'</div>'+
+              '<div class="order-total">'+fmtEur(order.total)+'</div>'+
+            '</div>';
+          }).join('');
+        });
+    }
   }
 
   function flashAdded(){
@@ -327,6 +421,15 @@
   }
 
   function checkout(){
+    if(authUser){
+      var snapshot = state.cart.map(function(i){ return {id:i.id, qty:i.qty, price:i.price}; });
+      window.SB.from('orders').insert({
+        user_id: authUser.id,
+        items:   snapshot,
+        total:   cartTotal(),
+        status:  'confirmed'
+      });
+    }
     state.cart = [];
     saveCart();
     var body = document.getElementById('cart-body');
@@ -381,11 +484,31 @@
 
     // router
     window.addEventListener('hashchange', navigate);
-    navigate();
 
-    // first render of cart count + i18n (chrome lives outside #page)
-    applyI18n();
-    renderCart();
+    // account icon → login or profile
+    var accountBtn = document.querySelector('.icon-btn[aria-label="Account"]');
+    if(accountBtn) accountBtn.addEventListener('click', function(){
+      location.hash = authUser ? '#/profile' : '#/login';
+    });
+
+    // Supabase auth listener — fires INITIAL_SESSION immediately, then on changes
+    window.SB.auth.onAuthStateChange(function(event, session){
+      authUser = session ? session.user : null;
+      updateAccountIcon();
+      if(event === 'INITIAL_SESSION'){
+        navigate();
+        applyI18n();
+        renderCart();
+      }
+      if(event === 'SIGNED_IN'  && location.hash === '#/login')   { location.hash = '#/profile'; }
+      if(event === 'SIGNED_OUT' && location.hash === '#/profile') { location.hash = '#/login'; }
+    });
+  }
+
+  function updateAccountIcon(){
+    var btn = document.querySelector('.icon-btn[aria-label="Account"]');
+    if(!btn) return;
+    btn.classList.toggle('auth-on', !!authUser);
   }
 
   if(document.readyState === 'loading'){
