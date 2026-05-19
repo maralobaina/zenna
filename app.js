@@ -428,6 +428,8 @@
         items:   snapshot,
         total:   cartTotal(),
         status:  'confirmed'
+      }).then(function(result){
+        if(result.error) console.warn('Order save failed:', result.error.message);
       });
     }
     state.cart = [];
