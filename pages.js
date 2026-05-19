@@ -17,16 +17,27 @@ window.PAGES = (function(){
       <div class="eyebrow on-red" data-i18n="hero.eyebrow.right"></div>
     </div>
 
-    <div>
+    <div class="hero-left">
       <h1>
-        <span data-i18n="hero.h1.l1"></span><br>
-        <span data-i18n="hero.h1.l2"></span> <span class="it" data-i18n="hero.h1.l3"></span><br>
-        <span data-i18n="hero.h1.l4"></span>
+        <span class="hero-lw"><span class="hero-line" data-i18n="hero.h1.l1"></span></span>
+        <span class="hero-lw"><span class="hero-line"><span data-i18n="hero.h1.l2"></span> <span class="it" data-i18n="hero.h1.l3"></span></span></span>
+        <span class="hero-lw"><span class="hero-line" data-i18n="hero.h1.l4"></span></span>
       </h1>
-      <p class="lede" data-i18n="hero.lede"></p>
-      <div class="cta-row">
-        <a class="btn primary" href="#/products/matcha-mansikka" data-i18n="hero.cta"></a>
+
+      <div class="hero-carousel">
+        <div class="hero-carousel-track">
+          <div class="hero-thumb"><img src="assets/carousel2.png" alt=""></div>
+          <div class="hero-thumb"><img src="assets/carousel4.png" alt=""></div>
+          <div class="hero-thumb"><img src="assets/carousel7.png" alt=""></div>
+          <div class="hero-thumb"><img src="assets/carousel1.png" alt=""></div>
+          <div class="hero-thumb hero-thumb-cta">
+            <img src="assets/carousel8.png" alt="">
+            <a class="btn hero-buy" href="#/products/matcha-mansikka" data-i18n="hero.cta"></a>
+          </div>
+        </div>
       </div>
+
+      <p class="hero-madein" data-i18n="promo.madein"></p>
     </div>
 
     <div class="product" aria-hidden="true">
@@ -37,22 +48,6 @@ window.PAGES = (function(){
         <b>30g</b>
         <small data-i18n="tag.no-sugar"></small>
       </div>
-    </div>
-
-    <div class="footnote">
-      <div class="col">
-        <span class="lbl" data-i18n="hero.meta.origin"></span>
-        <span class="val" data-i18n="hero.meta.origin.v"></span>
-      </div>
-      <div class="col">
-        <span class="lbl" data-i18n="hero.meta.quality"></span>
-        <span class="val" data-i18n="hero.meta.quality.v"></span>
-      </div>
-      <div class="col">
-        <span class="lbl" data-i18n="hero.meta.made"></span>
-        <span class="val" data-i18n="hero.meta.made.v"></span>
-      </div>
-      <a class="scroll" href="#story"><span class="line"></span> <span data-i18n="hero.scroll"></span></a>
     </div>
   </div>
 </section>
