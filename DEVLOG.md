@@ -50,9 +50,27 @@ This document tracks every improvement made to the Zenna website as part of an e
 
 ---
 
+### 3. Login page + profile page with real authentication
+**Date:** 2026-05-19  
+**What changed:** Added a fully functional login/signup page and a profile page with real user authentication and order history.  
+**Why:** Turns the prototype into a real product experience — users can create accounts, log in, and see their purchase history.  
+**Tools added:** Supabase (Backend-as-a-Service) for authentication and database  
+**Files changed:** `supabase-client.js` (new), `index.html`, `i18n.js`, `pages.js`, `styles.css`, `app.js`  
+**How it was done:**
+- Created a Supabase project with email/password authentication
+- Created an `orders` table in Supabase with Row Level Security (users can only read/write their own orders)
+- Added the Supabase JS library via CDN
+- Built a login/signup card with a tab switcher between "Sign in" and "Create account"
+- Built a profile page showing the user's email and full order history
+- The account icon in the nav now routes to login (if logged out) or profile (if logged in), with a small red dot indicator when logged in
+- The checkout function now saves orders to Supabase when the user is logged in
+- All new text is bilingual (EN/FI)
+
+---
+
 ## Improvements — Upcoming
 
-3. Login page + profile page (with Supabase authentication)
+4. Restore hero section carousel; animate hero text
 4. Restore hero section carousel; animate hero text
 5. Make prep guide on product page into a swipeable carousel
 6. Redesign product page and footer
