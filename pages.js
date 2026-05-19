@@ -17,29 +17,17 @@ window.PAGES = (function(){
       <div class="eyebrow on-red" data-i18n="hero.eyebrow.right"></div>
     </div>
 
-    <div class="hero-left">
+    <!-- left col: headline + cta -->
+    <div class="hero-h1-wrap">
       <h1>
         <span class="hero-lw"><span class="hero-line" data-i18n="hero.h1.l1"></span></span>
         <span class="hero-lw"><span class="hero-line"><span data-i18n="hero.h1.l2"></span> <span class="it" data-i18n="hero.h1.l3"></span></span></span>
         <span class="hero-lw"><span class="hero-line" data-i18n="hero.h1.l4"></span></span>
       </h1>
-
-      <div class="hero-carousel">
-        <div class="hero-carousel-track">
-          <div class="hero-thumb"><img src="assets/carousel2.png" alt=""></div>
-          <div class="hero-thumb"><img src="assets/carousel4.png" alt=""></div>
-          <div class="hero-thumb"><img src="assets/carousel7.png" alt=""></div>
-          <div class="hero-thumb"><img src="assets/carousel1.png" alt=""></div>
-          <div class="hero-thumb hero-thumb-cta">
-            <img src="assets/carousel8.png" alt="">
-            <a class="btn hero-buy" href="#/products/matcha-mansikka" data-i18n="hero.cta"></a>
-          </div>
-        </div>
-      </div>
-
-      <p class="hero-madein" data-i18n="promo.madein"></p>
+      <a class="btn hero-cta" href="#/products/matcha-mansikka" data-i18n="hero.cta"></a>
     </div>
 
+    <!-- right col: bag — spans rows 2 + 3 so it sits on top of the carousel -->
     <div class="product" aria-hidden="true">
       <div class="stage">
         <img class="bag" src="assets/hero-bag-sm.png" alt="">
@@ -49,6 +37,27 @@ window.PAGES = (function(){
         <small data-i18n="tag.no-sugar"></small>
       </div>
     </div>
+
+    <!-- full-width auto-scrolling carousel (z-index lower than bag) -->
+    <div class="hero-carousel">
+      <div class="hero-carousel-track">
+        <div class="hero-thumb"><img src="assets/carousel2.png" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel4.png" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel7.png" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel1.png" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel8.png" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel3.png" alt=""></div>
+        <!-- duplicated for seamless loop -->
+        <div class="hero-thumb"><img src="assets/carousel2.png" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel4.png" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel7.png" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel1.png" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel8.png" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel3.png" alt=""></div>
+      </div>
+    </div>
+
+    <p class="hero-madein" data-i18n="promo.madein"></p>
   </div>
 </section>
 
