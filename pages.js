@@ -175,6 +175,13 @@ ${linkFooter()}
   function productDetail(){
     return `
 <section class="pdetail">
+  <div class="pdetail-hero">
+    <span class="eyebrow on-red" data-i18n="pdetail.hero.eyebrow"></span>
+    <h1 class="pdetail-headline">
+      <span data-i18n="pdetail.hero.l1"></span>
+      <span class="it" data-i18n="pdetail.hero.l2"></span>
+    </h1>
+  </div>
   <nav class="crumbs">
     <a href="#/" data-i18n="plist.crumbs.home"></a>
     <span class="sep">·</span>
@@ -280,6 +287,17 @@ ${linkFooter()}
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="pmoment">
+  <div class="pmoment-img">
+    <img src="assets/matcha-bg.jpg" alt="Matcha from Uji, Japan" loading="lazy">
+  </div>
+  <div class="pmoment-text">
+    <span class="eyebrow" data-i18n="pdetail.moment.eyebrow"></span>
+    <h2 data-i18n="pdetail.moment.h"></h2>
+    <p data-i18n="pdetail.moment.p"></p>
   </div>
 </section>
 

@@ -133,6 +133,12 @@ window.I18N = {
     'product.tag': 'New · Spring 26',
 
     /* product detail */
+    'pdetail.hero.eyebrow': 'Matcha Mansikka · 30 g',
+    'pdetail.hero.l1': 'Two ingredients.',
+    'pdetail.hero.l2': 'Nothing hidden.',
+    'pdetail.moment.eyebrow': 'From farm to glass',
+    'pdetail.moment.h': 'Grown in Japan. Bottled in Finland.',
+    'pdetail.moment.p': 'Every batch starts in the shade-grown tea fields of Uji — the birthplace of ceremonial matcha. We blend it with freeze-dried polka strawberries from Northern Finland. No shortcuts. Nothing added.',
     'pdetail.crumb.product': 'Matcha Mansikka',
     'pdetail.tax': 'Incl. taxes · free shipping over 50 €',
     'pdetail.qty': 'Quantity',
@@ -311,6 +317,12 @@ window.I18N = {
     'product.size': '30 g · 12 annosta',
     'product.tag': 'Uusi · Kevät 26',
 
+    'pdetail.hero.eyebrow': 'Matcha Mansikka · 30 g',
+    'pdetail.hero.l1': 'Kaksi raaka-ainetta.',
+    'pdetail.hero.l2': 'Ei mitään piilotettua.',
+    'pdetail.moment.eyebrow': 'Pellolta lasiin',
+    'pdetail.moment.h': 'Kasvatettu Japanissa. Valmistettu Suomessa.',
+    'pdetail.moment.p': 'Jokainen erä alkaa Ujin varjoviljellyiltä teapelloilta — seremoniamatchan synnyinsijalta. Sekoitamme sen pakastekuivatuilla polka-mansikoilla Pohjois-Suomesta. Ei oikoteitä. Ei lisättyä.',
     'pdetail.crumb.product': 'Matcha Mansikka',
     'pdetail.opt.once': 'Kertaosto',
     'pdetail.opt.once.sub': 'Täysi hinta, ei sitoumusta',
