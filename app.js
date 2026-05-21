@@ -462,7 +462,7 @@
   var PRODUCT = {
     id: 'matcha-mansikka',
     price: 24.99,
-    img: 'assets/hero-bag-sm.png'
+    img: 'assets/hero-bag-sm.webp'
   };
 
   function saveCart(){ localStorage.setItem(STORAGE_CART, JSON.stringify(state.cart)); }

@@ -29,7 +29,7 @@ window.PAGES = (function(){
     <!-- bag — spans rows 2–4, z-index 2 (below headline, above carousel) -->
     <div class="product" aria-hidden="true">
       <div class="stage">
-        <img class="bag" src="assets/hero-bag-sm.png" alt="">
+        <img class="bag" src="assets/hero-bag-sm.webp" alt="">
       </div>
       <div class="tag">
         <b>30g</b>
@@ -40,23 +40,23 @@ window.PAGES = (function(){
     <!-- auto-scrolling carousel — full width, slides behind the bag -->
     <div class="hero-carousel">
       <div class="hero-carousel-track">
-        <div class="hero-thumb"><img src="assets/carousel2.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel4.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel7.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel1.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel8.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel3.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel5.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel6.jpeg" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel2.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel4.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel7.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel1.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel8.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel3.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel5.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel6.webp" alt=""></div>
         <!-- duplicated for seamless loop -->
-        <div class="hero-thumb"><img src="assets/carousel2.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel4.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel7.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel1.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel8.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel3.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel5.jpeg" alt=""></div>
-        <div class="hero-thumb"><img src="assets/carousel6.jpeg" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel2.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel4.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel7.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel1.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel8.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel3.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel5.webp" alt=""></div>
+        <div class="hero-thumb"><img src="assets/carousel6.webp" alt=""></div>
       </div>
     </div>
 
@@ -134,7 +134,7 @@ ${linkFooter()}
     <a class="pcard" href="#/products/matcha-mansikka">
       <div class="frame">
         <span class="tag" data-i18n="product.tag"></span>
-        <img src="assets/hero-bag-sm.png" alt="">
+        <img src="assets/hero-bag-sm.webp" alt="">
         <span class="quick" aria-hidden="true">+</span>
       </div>
       <div class="meta">
@@ -186,14 +186,14 @@ ${linkFooter()}
   <div class="top">
     <div class="gallery">
       <div class="main">
-        <img id="pgallery-img" src="assets/hero-bag-sm.png" alt="">
+        <img id="pgallery-img" src="assets/hero-bag-sm.webp" alt="">
         <span class="corner" data-i18n="product.name"></span>
         <span class="pager">01 / 03</span>
       </div>
       <div class="thumbs">
-        <button class="t on" data-img="assets/hero-bag-sm.png" data-page="01"><img src="assets/hero-bag-sm.png" alt=""></button>
-        <button class="t" data-img="assets/closeup_matcha9.jpeg" data-page="02"><img src="assets/closeup_matcha9.jpeg" alt="Close-up of matcha powder"></button>
-        <button class="t" data-img="assets/closeup_matcha10.jpeg" data-page="03"><img src="assets/closeup_matcha10.jpeg" alt="Close-up of matcha"></button>
+        <button class="t on" data-img="assets/hero-bag-sm.webp" data-page="01"><img src="assets/hero-bag-sm.webp" alt=""></button>
+        <button class="t" data-img="assets/closeup_matcha9.webp" data-page="02"><img src="assets/closeup_matcha9.webp" alt="Close-up of matcha powder"></button>
+        <button class="t" data-img="assets/closeup_matcha10.webp" data-page="03"><img src="assets/closeup_matcha10.webp" alt="Close-up of matcha"></button>
       </div>
     </div>
 
@@ -292,19 +292,19 @@ ${linkFooter()}
     <div class="prep-track">
       <div class="step">
         <span class="num">1</span>
-        <div class="photo"><img src="assets/matcha-bg-sm.jpeg" alt=""></div>
+        <div class="photo"><img src="assets/matcha-bg-sm.webp" alt=""></div>
         <h4 data-i18n="pdetail.prep.1.h"></h4>
         <p data-i18n="pdetail.prep.1.p"></p>
       </div>
       <div class="step">
         <span class="num">2</span>
-        <div class="photo"><img src="assets/matcha-pour-sm.jpeg" alt=""></div>
+        <div class="photo"><img src="assets/matcha-pour-sm.webp" alt=""></div>
         <h4 data-i18n="pdetail.prep.2.h"></h4>
         <p data-i18n="pdetail.prep.2.p"></p>
       </div>
       <div class="step">
         <span class="num">3</span>
-        <div class="photo"><img src="assets/strawberry-sm.jpeg" alt=""></div>
+        <div class="photo"><img src="assets/strawberry-sm.webp" alt=""></div>
         <h4 data-i18n="pdetail.prep.3.h"></h4>
         <p data-i18n="pdetail.prep.3.p"></p>
       </div>
@@ -392,7 +392,7 @@ ${linkFooter()}
     <article class="ig-card full">
       <div class="post">
         <span class="badge" aria-hidden="true"></span>
-        <img src="assets/post.jpeg" alt="Hailey Bieber x Zenna Matcha">
+        <img src="assets/post.webp" alt="Hailey Bieber x Zenna Matcha">
       </div>
       <div class="bar">
         <span class="av">z</span>
@@ -402,7 +402,7 @@ ${linkFooter()}
     <article class="ig-card full">
       <div class="post">
         <span class="badge" aria-hidden="true"></span>
-        <img src="assets/post2.jpeg" alt="Matcha — the haters edition">
+        <img src="assets/post2.webp" alt="Matcha — the haters edition">
       </div>
       <div class="bar">
         <span class="av">z</span>
@@ -412,7 +412,7 @@ ${linkFooter()}
     <article class="ig-card full">
       <div class="post">
         <span class="badge" aria-hidden="true"></span>
-        <img src="assets/strawberry-sm.jpeg" alt="">
+        <img src="assets/strawberry-sm.webp" alt="">
       </div>
       <div class="bar">
         <span class="av">z</span>
@@ -528,7 +528,7 @@ ${linkFooter()}`;
 <section class="auth-page">
   <div class="auth-card">
     <a href="#/" class="auth-logo">
-      <img src="assets/zenna-wordmark.png" alt="Zenna">
+      <img src="assets/zenna-wordmark.webp" alt="Zenna">
     </a>
     <div class="auth-tabs">
       <button class="auth-tab on" data-tab="signin" data-i18n="auth.signin"></button>
