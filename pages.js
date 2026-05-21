@@ -419,6 +419,19 @@ ${linkFooter()}
       </div>
     </article>
   </div>
+  <div class="insta-controls">
+    <button class="insta-prev" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="insta-dots">
+      <button class="insta-dot on" data-idx="0" aria-label="Photo 1"></button>
+      <button class="insta-dot" data-idx="1" aria-label="Photo 2"></button>
+      <button class="insta-dot" data-idx="2" aria-label="Photo 3"></button>
+    </div>
+    <button class="insta-next" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
 </section>`;
   }
 

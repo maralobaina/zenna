@@ -213,6 +213,9 @@
     // prep step carousel
     if(document.querySelector('.prep-carousel')) initPrepCarousel();
 
+    // insta carousel (mobile only)
+    if(document.querySelector('.insta-controls')) initInstaCarousel();
+
     // scroll reveal
     initReveal();
 
@@ -354,6 +357,34 @@
     dots.forEach(function(d){ d.addEventListener('click', function(){ goTo(+d.dataset.idx); }); });
 
     // touch/swipe
+    var startX = null;
+    track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend', function(e){
+      if(startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if(Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
+      startX = null;
+    });
+  }
+
+  function initInstaCarousel(){
+    if(window.innerWidth > 640) return;
+    var track = document.querySelector('.insta .cards');
+    var dots  = document.querySelectorAll('.insta-dot');
+    if(!track || !dots.length) return;
+    var total = track.querySelectorAll('.ig-card').length;
+    var cur   = 0;
+
+    function goTo(idx){
+      cur = (idx + total) % total;
+      track.style.transform = 'translateX(calc(-' + cur + ' * 100%))';
+      dots.forEach(function(d){ d.classList.toggle('on', +d.dataset.idx === cur); });
+    }
+
+    document.querySelector('.insta-prev').addEventListener('click', function(){ goTo(cur - 1); });
+    document.querySelector('.insta-next').addEventListener('click', function(){ goTo(cur + 1); });
+    dots.forEach(function(d){ d.addEventListener('click', function(){ goTo(+d.dataset.idx); }); });
+
     var startX = null;
     track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
     track.addEventListener('touchend', function(e){
