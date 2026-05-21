@@ -104,6 +104,7 @@ window.I18N = {
     'auth.signin.btn': 'Sign in',
     'auth.signup.btn': 'Create account',
     'auth.check.email': 'Check your inbox to confirm your account.',
+    'auth.pw.mismatch': 'Passwords do not match.',
 
     /* profile */
     'profile.since': 'Zenna member',
@@ -284,6 +285,7 @@ window.I18N = {
     'auth.signin.btn': 'Kirjaudu sisään',
     'auth.signup.btn': 'Luo tili',
     'auth.check.email': 'Tarkista sähköpostisi vahvistaaksesi tilisi.',
+    'auth.pw.mismatch': 'Salasanat eivät täsmää.',
 
     /* profile */
     'profile.since': 'Zenna-jäsen',

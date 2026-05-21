@@ -246,7 +246,17 @@
         var password = authForm.querySelector('[name=password]').value;
         var errEl    = document.getElementById('auth-error');
         var btn      = document.getElementById('auth-submit');
-        btn.disabled = true; errEl.textContent = '';
+        errEl.textContent = '';
+
+        if(mode === 'signup'){
+          var confirm = authForm.querySelector('[name=confirm]').value;
+          if(password !== confirm){
+            errEl.textContent = tt('auth.pw.mismatch');
+            return;
+          }
+        }
+
+        btn.disabled = true;
 
         var promise = mode === 'signin'
           ? window.SB.auth.signInWithPassword({email: email, password: password})
