@@ -664,34 +664,6 @@ input{font:inherit}
 }
 .pdetail .ingredients .item.open .body{max-height: 200px;padding: 0 4px 22px}
 
-/* ── product editorial hero ── */
-.pdetail-hero{padding:56px 0 48px;border-bottom:var(--rule);margin-bottom:48px}
-.pdetail-hero .eyebrow{display:block;margin-bottom:22px}
-.pdetail-headline{
-  font-family:var(--serif);font-weight:400;
-  font-size:clamp(58px,7.5vw,116px);
-  line-height:.92;letter-spacing:-.025em;
-  color:var(--ink);margin:0;
-}
-.pdetail-headline span{display:block}
-.pdetail-headline .it{font-style:italic;color:var(--red-dk)}
-
-/* ── pmoment full-bleed editorial section ── */
-.pmoment{display:grid;grid-template-columns:1fr 1fr;min-height:580px;background:var(--ink)}
-.pmoment-img{overflow:hidden}
-.pmoment-img img{width:100%;height:100%;object-fit:cover;display:block}
-.pmoment-text{
-  padding:88px var(--pad-x);
-  display:flex;flex-direction:column;justify-content:center;gap:32px;
-}
-.pmoment-text .eyebrow{color:rgba(255,252,240,.45)}
-.pmoment-text h2{
-  font-family:var(--serif);font-weight:400;
-  font-size:clamp(36px,3.8vw,58px);line-height:1.03;
-  color:var(--cream);
-}
-.pmoment-text p{font-size:15px;line-height:1.78;color:rgba(255,252,240,.65);max-width:380px}
-
 /* ───── PREP / TUTORIAL ───── */
 .prep{padding: 80px var(--pad-x);background: var(--cream)}
 .prep .head{
@@ -998,9 +970,6 @@ input{font:inherit}
 /* ───── RESPONSIVE ───── */
 @media (max-width: 1100px){
   :root{ --pad-x: 32px }
-  .pmoment{grid-template-columns:1fr}
-  .pmoment-img{min-height:320px}
-  .pmoment-text{padding:64px var(--pad-x)}
   .hero .grid{grid-template-columns:1fr;min-height:0}
   .hero-h1-wrap{grid-column:1;grid-row:2}
   .hero .product{grid-column:1;grid-row:3;z-index:1}
