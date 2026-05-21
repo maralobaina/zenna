@@ -387,6 +387,7 @@ ${linkFooter()}
       <span class="small" data-i18n="insta.sub"></span>
     </div>
   </div>
+  <div class="insta-track-wrap">
   <div class="cards">
     <article class="ig-card full">
       <div class="post">
@@ -418,6 +419,7 @@ ${linkFooter()}
         <div class="who"><span class="h">zennaclub</span><span class="c" data-i18n="insta.3.cap"></span></div>
       </div>
     </article>
+  </div>
   </div>
   <div class="insta-controls">
     <button class="insta-prev" aria-label="Previous photo">

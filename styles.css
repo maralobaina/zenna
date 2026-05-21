@@ -998,7 +998,8 @@ input{font:inherit}
   .hero-thumb{flex:0 0 120px;height:150px}
 
   .insta .cards,.triplet .row,.linkfooter .grid, .plist .grid, .pdetail .info .specs{grid-template-columns: 1fr}
-  .insta .cards{display:flex;overflow:hidden;gap:0;transition:transform .4s cubic-bezier(.22,.61,.36,1)}
+  .insta-track-wrap{overflow:hidden}
+  .insta .cards{display:flex;gap:0;transition:transform .4s cubic-bezier(.22,.61,.36,1)}
   .insta .cards .ig-card{flex:0 0 100%;min-width:0}
   .insta-controls{
     display:flex;align-items:center;justify-content:center;gap:16px;padding-top:20px;
