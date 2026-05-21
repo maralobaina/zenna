@@ -25,7 +25,6 @@
   var state = {
     lang:  localStorage.getItem(STORAGE_LANG) || 'en',
     cart:  JSON.parse(localStorage.getItem(STORAGE_CART) || '[]'),
-    route: location.hash || '#/',
     qty:   1
   };
 
@@ -65,7 +64,6 @@
   // ── router ───────────────────────────────────────────────────────
   function navigate(){
     var hash = location.hash || '#/';
-    state.route = hash;
 
     // loader bar: start
     var loader = document.getElementById('page-loader');
